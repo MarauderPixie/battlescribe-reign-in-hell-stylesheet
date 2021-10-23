@@ -13,6 +13,12 @@
             body {
                 font-family: 'Cambo', sans-serif;
                 font-size: 0.8em; }
+
+p {
+    padding: 10px;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
             .card {
                 width: 12cm;
                 min-height: 4.0cm;
@@ -63,7 +69,7 @@
                 background-color: #748A4E; } */
             table {
                 border-collapse: collapse;
-                margin: 5px;
+                margin: 1px 8px 8px 5px;
                 float: left;
             }
 
@@ -91,7 +97,7 @@
             }
             .hitbox:first-of-type {
                 margin-top: 12px;
-                margin-left: 24px;
+                margin-left: 8px;
             }
 
             .abilities {
@@ -108,6 +114,8 @@
 	
         <body>
 			<xsl:call-template name="roster"/>
+            <!-- evtl. lässt sich hier einiges abkürzen, wenn ich hinter bs:force noch
+                 /bs:selections/bs:selection packe? !-->
 			<xsl:apply-templates select="bs:force" mode="cards"/>
 	    </body>
 	</html>
@@ -156,34 +164,25 @@
 					</table>
 				</div>
 			</xsl:if> !-->
-			<div class="card-header">
-				<b><xsl:value-of select="./@name"/></b> - <xsl:value-of select="bs:categories/bs:category/@name"/>
+			<div class="card-header" style="align: left">
+                    <b><xsl:value-of select="./@name"/></b> - <xsl:value-of select="bs:categories/bs:category/@name"/>
+                    <span style="float: right">
+                    <xsl:choose>
+                        <xsl:when test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']">
+                            <b><xsl:value-of select="@customName"/> the <xsl:value-of select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']/@name"/> </b>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <b><xsl:value-of select="@customName"/></b>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    </span>
 			</div>
 			<div class="card-body">
 				<table class="unit" cellspacing="0">
-					<!-- <tr>
-							<th>
-									Name
-							</th>
-							<xsl:apply-templates select="bs:profiles/bs:profile[@typeName='unit']" mode="header"/>
-							<xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='unit']" mode="header"/>
-							<th></th>
-					</tr> !-->
 					<tr>
                         <td>
-                            <!-- <xsl:choose>
-                                <xsl:when test="bs:selections/bs:selection[@type='model']">
-                                    <xsl:value-of select="bs:selections/bs:selection[@type='model']/@name"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:value-of select="@name"/>
-                                </xsl:otherwise>
-                            </xsl:choose> !-->
                             <xsl:value-of select="bs:profiles/bs:profile[@typeId='b8bf-34dc-6f26-5b03']/bs:characteristics/bs:characteristic[@name='Move']"/>
                         </td>
-                            <!-- <xsl:apply-templates select="bs:profiles/bs:profile[@typeName='unit']" mode="body"/>
-                            <xsl:apply-templates select="bs:selections/bs:selection[@type='model']/bs:profiles/bs:profile[@typeName='unit']" mode="body"/>
-						<td></td> !-->
 					</tr>
                     <tr><td>Move</td></tr>
                     <tr><td>
@@ -192,6 +191,20 @@
                     <tr><td>Combat</td></tr>
 				</table>
 
+                
+                <!-- LIFE TRACKER !-->
+                <b>Life:</b><xsl:call-template name="life-tracker" />
+                
+                
+                <!-- DECLARE TITLE !-->
+                <xsl:if test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']">
+                    <p class="title">
+                        <b><i><xsl:value-of select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']/@name"/>: </i></b>
+                        <xsl:value-of select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']/bs:characteristics/bs:characteristic"/>
+                    </p>
+                </xsl:if>
+
+                
                 <p class="abilities"> <!-- DECLARE ABILITIES !-->
                     <xsl:variable name="ability-name" select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']"/>
                     <!-- <b><i><xsl:value-of select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']/@name"/></i></b> - <xsl:value-of select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']/bs:characteristics/bs:characteristic"/> !-->
@@ -213,8 +226,10 @@
                     </xsl:for-each>
                 </p>
 
+                
                 <p class="relics"> <!-- DECLARE RELICS
                          -> since every demon can only ever have one, the for-each might as well just go away 
+                            -> then again, there's a title that allows for more
                          -> maybe create CSS classes (for abilities, essences and relics)? !-->
                     <xsl:if test="$leader-gear/@typeName='Leader Relic'">
                         <b><i><xsl:value-of select="$leader-gear[@typeName='Leader Relic']/@name"/></i></b> - <xsl:value-of select="$leader-gear[@typeName='Leader Relic']/bs:characteristics/bs:characteristic"/><br />
@@ -227,6 +242,21 @@
                 </p>
             </div>
 		</div>
+</xsl:template>
+
+<xsl:template name="life-tracker">
+    <xsl:param name="index" select="1" />
+    <xsl:param name="maxValue" select="bs:profiles/bs:profile[@typeId='b8bf-34dc-6f26-5b03']/bs:characteristics/bs:characteristic[@name='Life']" />
+
+    <div class="hitbox"></div>
+    
+    <!-- &lt; represents "<" for html entities -->
+    <xsl:if test="$index &lt; $maxValue">
+        <xsl:call-template name="life-tracker">
+            <xsl:with-param name="index" select="$index + 1" />
+            <xsl:with-param name="maxValue" select="$maxValue" />
+        </xsl:call-template>
+    </xsl:if>
 </xsl:template>
 
 </xsl:stylesheet>
