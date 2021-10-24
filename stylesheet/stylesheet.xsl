@@ -9,24 +9,36 @@
     <html>
 		<head>
 			<style>
-            @import url("https://fonts.googleapis.com/css2?family=Cambo&amp;display=swap");
-            body {
-                font-family: 'Cambo', sans-serif;
-                font-size: 0.8em; }
+            @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&amp;display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Lusitana&amp;display=swap');
 
-p {
-    padding: 10px;
-    margin-block-start: 0em;
-    margin-block-end: 0em;
-}
+            /* @media print{@page {size: landscape}} */
+
+            @media (orientation: landscape) {
+            body {
+                font-family: 'Lusitana', serif;
+                font-size: 0.8em; 
+                flex-direction: column;
+            }
+
+            p {
+                padding: 10px;
+                margin-block-start: 0em;
+                margin-block-end: 0em;
+            }
+
             .card {
+                float: left;
+                margin: 12px;
                 width: 12cm;
-                min-height: 4.0cm;
+                min-height: 4.5cm;
                 background-color: #ffffff;
                 border: 2px solid #555555;
                 border-radius: 0.4em;
                 margin-bottom: 0.5cm;
-                font-size: 0.9em; }
+                font-size: 0.8em; 
+                page-break-inside: avoid;
+            }
             .card .card-header {
                 color: #000000;
                 font-size: 1em;
@@ -36,7 +48,10 @@ p {
                 border-top-right-radius: 0.4em;
                 text-align: left;
                 /* text-transform: uppercase; */
-                padding: 0.2cm; }
+                padding: 0.2cm; 
+            }
+
+
             .card .wound-track {
                 height: 2.5cm;
                 width: 5cm;
@@ -59,6 +74,8 @@ p {
                 font-size: 0.7em;
                 border-collapse: collapse;
                 text-align: center; }
+
+
             /* .card .wound-track tr {
                 background-color: #FFFFFF; }
             .card .wound-track tr:nth-child(odd) {
@@ -67,6 +84,8 @@ p {
                 background-color: #FFFFFF; }
             .card .wound-track th {
                 background-color: #748A4E; } */
+
+
             table {
                 border-collapse: collapse;
                 margin: 1px 8px 8px 5px;
@@ -81,7 +100,7 @@ p {
                 background-color: #fff; 
             }
             tr:nth-child(odd) {
-                font-size: 2em;
+                font-size: 1.3em;
                 text-align: center;
                 border-bottom: 2px solid #aaa;   
                 /* border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 100 round; */
@@ -101,13 +120,14 @@ p {
             }
 
             .abilities {
-                color: red;
+                color: black;
             }
             .essences {
-                color: green;
+                color: black;
             }
             .relics {
-                color: blue;
+                color: black;
+            }
             }
             </style>
 		</head>
@@ -141,29 +161,11 @@ p {
 <!-- CARD STUFF? !-->
 <xsl:template match="bs:force" mode="cards">
 	<!-- Render cards template -->
-	<xsl:apply-templates select="bs:selections/bs:selection[@type='upgrade' or @type='unit']"/>
+	<xsl:apply-templates select="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']"/>
 </xsl:template>
 
-<xsl:template match="bs:selections/bs:selection[@type='upgrade' or @type='unit']">
+<xsl:template match="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']">
 		<div class="card">
-			<!-- <xsl:if test="bs:profiles/bs:profile[@typeName='Wound Track (M/BS/A)']">
-				<div class="wound-track">
-					<div class="wound-track-header">
-						<span>DAMAGE</span><br/>
-						Some of this models characteristics change as it suffers damage, as shown below:
-					</div>
-					<table>
-						<tr>
-								<xsl:apply-templates select="bs:profiles/bs:profile[@typeName='Wound Track (M/BS/A)'][1]" mode="header"/>																
-						</tr>
-						<xsl:for-each select="bs:profiles/bs:profile[@typeName='Wound Track (M/BS/A)']">
-							<tr>
-								<xsl:apply-templates select="." mode="body"/>											
-							</tr>
-						</xsl:for-each>
-					</table>
-				</div>
-			</xsl:if> !-->
 			<div class="card-header" style="align: left">
                     <b><xsl:value-of select="./@name"/></b> - <xsl:value-of select="bs:categories/bs:category/@name"/>
                     <span style="float: right">
@@ -179,6 +181,12 @@ p {
 			</div>
 			<div class="card-body">
 				<table class="unit" cellspacing="0">
+                    <tr>
+                        <td>
+                            <xsl:value-of select="bs:profiles/bs:profile[@typeId='b8bf-34dc-6f26-5b03']/bs:characteristics/bs:characteristic[@name='Life']"/>
+                        </td>
+					</tr>
+                    <tr><td>Life</td></tr>
 					<tr>
                         <td>
                             <xsl:value-of select="bs:profiles/bs:profile[@typeId='b8bf-34dc-6f26-5b03']/bs:characteristics/bs:characteristic[@name='Move']"/>
@@ -193,7 +201,7 @@ p {
 
                 
                 <!-- LIFE TRACKER !-->
-                <b>Life:</b><xsl:call-template name="life-tracker" />
+                <b>Wounds:</b><xsl:call-template name="life-tracker" />
                 
                 
                 <!-- DECLARE TITLE !-->
