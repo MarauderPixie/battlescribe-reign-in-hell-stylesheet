@@ -42,7 +42,7 @@
             }
 
             p {
-                padding: 10px;
+                padding: 5px 10px;
                 margin-block-start: 0em;
                 margin-block-end: 0em;
             }
@@ -184,10 +184,11 @@
 <!-- CARD STUFF? !-->
 <xsl:template match="bs:force" mode="cards">
 	<!-- Render cards template -->
-    <xsl:variable name="sortOrder" select="'|Leader|Devout|Minion|'" />
+    <!-- <xsl:variable name="sortOrder" select="'|Leader|Devout|Minion|'" /> -->
+    
 	<xsl:apply-templates select="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']">
         <!-- <xsl:sort data-type="number" select="string-length(substring-before($sortOrder, @result))" /> -->
-        <xsl:sort select="bs:categories/bs:category/@name" />
+        <xsl:sort select="bs:categories/bs:category[@entryId='0894-68fa-8134-6e32' or @entryId='3436-8e6e-a8f6-716e' or @entryId='e534-8b74-6056-9e87']/@name" />
     </xsl:apply-templates>
 </xsl:template>
 
@@ -244,37 +245,41 @@
                     <xsl:variable name="ability-name" select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']"/>
                     <!-- <b><i><xsl:value-of select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']/@name"/></i></b> - <xsl:value-of select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']/bs:characteristics/bs:characteristic"/> !-->
                     <xsl:for-each select="$ability-name">
-                        <b><i><xsl:value-of select="@name"/></i></b> - <xsl:value-of select="bs:characteristics/bs:characteristic"/> <br />
+                        <b><i><xsl:value-of select="@name"/> - </i></b><xsl:value-of select="bs:characteristics/bs:characteristic"/> <br />
                     </xsl:for-each>
                 </p>
 
 
                 <xsl:variable name="leader-gear" select="bs:selections/bs:selection/bs:profiles/bs:profile"/>
-                <p class="essences"> <!-- DECLARE ESSENCES !-->
-                    <xsl:if test="$leader-gear/@typeName='Leader Essence'">
-                        <b><i><xsl:value-of select="$leader-gear/@name"/></i></b> - <xsl:value-of select="$leader-gear/bs:characteristics/bs:characteristic"/><br />
-                    </xsl:if>
+                <xsl:if test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Essence' or @typeName='Leader Essence']">
+                    <p class="essences"> <!-- DECLARE ESSENCES !-->
+                        <xsl:if test="$leader-gear/@typeName='Leader Essence'">
+                            <b><i><xsl:value-of select="$leader-gear/@name"/> - </i></b><xsl:value-of select="$leader-gear/bs:characteristics/bs:characteristic"/><br />
+                        </xsl:if>
 
-                    <xsl:variable name="essences" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Essence']"/>
-                    <xsl:for-each select="$essences">
-                        <b><i><xsl:value-of select="@name"/>: </i></b> <xsl:value-of select="bs:characteristics/bs:characteristic"/><br />
-                    </xsl:for-each>
-                </p>
+                        <xsl:variable name="essences" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Essence']"/>
+                        <xsl:for-each select="$essences">
+                            <b><i><xsl:value-of select="@name"/> - </i></b><xsl:value-of select="bs:characteristics/bs:characteristic"/><br />
+                        </xsl:for-each>
+                    </p>
+                </xsl:if>
 
                 
-                <p class="relics"> <!-- DECLARE RELICS
-                         -> since every demon can only ever have one, the for-each might as well just go away 
-                            -> then again, there's a title that allows for more
-                         -> maybe create CSS classes (for abilities, essences and relics)? !-->
-                    <xsl:if test="$leader-gear/@typeName='Leader Relic'">
-                        <b><i><xsl:value-of select="$leader-gear[@typeName='Leader Relic']/@name"/></i></b> - <xsl:value-of select="$leader-gear[@typeName='Leader Relic']/bs:characteristics/bs:characteristic"/><br />
-                    </xsl:if>
-                    
-                    <xsl:variable name="relics" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Relic']"/>
-                    <xsl:for-each select="$relics">
-                        <b><i><xsl:value-of select="@name"/>: </i></b> <xsl:value-of select="bs:characteristics/bs:characteristic"/>
-                    </xsl:for-each>
-                </p>
+                <xsl:if test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Relic' or @typeName='Leader Relic']">
+                    <p class="relics"> <!-- DECLARE RELICS
+                            -> since every demon can only ever have one, the for-each might as well just go away 
+                                -> then again, there's a title that allows for more
+                            -> maybe create CSS classes (for abilities, essences and relics)? !-->
+                        <xsl:if test="$leader-gear/@typeName='Leader Relic'">
+                            <b><i><xsl:value-of select="$leader-gear[@typeName='Leader Relic']/@name"/> - </i></b><xsl:value-of select="$leader-gear[@typeName='Leader Relic']/bs:characteristics/bs:characteristic"/><br />
+                        </xsl:if>
+                        
+                        <xsl:variable name="relics" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Relic']"/>
+                        <xsl:for-each select="$relics">
+                            <b><i><xsl:value-of select="@name"/> - </i></b> <xsl:value-of select="bs:characteristics/bs:characteristic"/>
+                        </xsl:for-each>
+                    </p>
+                </xsl:if>
             </div>
 		</div>
 </xsl:template>
