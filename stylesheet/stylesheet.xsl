@@ -12,6 +12,11 @@
             @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&amp;display=swap');
             @import url('https://fonts.googleapis.com/css2?family=Lusitana&amp;display=swap');
 
+            @font-face {
+                font-family: "Democratika";
+                src: url("/home/tobi/.fonts/democratika.ttf");
+            }
+
             /* @media print{@page {size: landscape}} */
 
             @media (orientation: landscape) {
@@ -19,6 +24,21 @@
                 font-family: 'Lusitana', serif;
                 font-size: 0.8em; 
                 flex-direction: column;
+            }
+
+            h1 {
+                font-family: Cinzel, Democratika, serif;
+                /* font-size: 54pt; */
+                font-weight: bold;
+                margin-bottom: 0;
+                display: inline-block;
+            }
+            h2 {
+                font-family: Cinzel, Democratika, serif;
+                /* font-size: 54pt; */
+                margin-top: 0;
+                font-weight: normal;
+                display: inline-block;
             }
 
             p {
@@ -33,17 +53,20 @@
                 width: 12cm;
                 min-height: 4.5cm;
                 background-color: #ffffff;
-                border: 2px solid #555555;
-                border-radius: 0.4em;
-                margin-bottom: 0.5cm;
+                /* border: 2px solid #555555;
+                border-radius: 0.4em; */
+                border: 10px solid transparent;
+                padding: 5px;
+                border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 10 stretch;
+                margin-bottom: 0;
                 font-size: 0.8em; 
                 page-break-inside: avoid;
             }
             .card .card-header {
                 color: #000000;
-                font-size: 1em;
+                font-size: 1.1em;
                 font-variant-caps: small-caps;
-                background-color: #f4f4f4;
+                /* background-color: #f4f4f4; */
                 border-top-left-radius: 0.4em;
                 border-top-right-radius: 0.4em;
                 text-align: left;
@@ -145,8 +168,8 @@
 <!-- GENERAL CABAL STUFF !-->
 <xsl:template name="roster">
     <section class="roster-header">
-        <h1><xsl:value-of select="../@name"/></h1>
-        <h2><xsl:value-of select="bs:force/bs:selections/bs:selection/bs:selections/bs:selection/@name"/></h2>
+        <h1><xsl:value-of select="../@name"/> - </h1>
+        <h2>A Cabal of <xsl:value-of select="bs:force/bs:selections/bs:selection/bs:selections/bs:selection/@name"/> Demons</h2>
     </section>
 
     <section class="roster-body">
