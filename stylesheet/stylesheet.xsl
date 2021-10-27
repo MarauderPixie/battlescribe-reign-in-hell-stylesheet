@@ -141,6 +141,9 @@
                 margin-top: 12px;
                 margin-left: 8px;
             }
+            .hitbox:nth-child(3n+2) {
+                background-color: #E3E2E2;
+            }
 
             .abilities {
                 color: black;
