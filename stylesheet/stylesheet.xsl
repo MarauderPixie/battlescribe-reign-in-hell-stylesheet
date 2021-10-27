@@ -184,7 +184,11 @@
 <!-- CARD STUFF? !-->
 <xsl:template match="bs:force" mode="cards">
 	<!-- Render cards template -->
-	<xsl:apply-templates select="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']"/>
+    <xsl:variable name="sortOrder" select="'|Leader|Devout|Minion|'" />
+	<xsl:apply-templates select="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']">
+        <!-- <xsl:sort data-type="number" select="string-length(substring-before($sortOrder, @result))" /> -->
+        <xsl:sort select="bs:categories/bs:category/@name" />
+    </xsl:apply-templates>
 </xsl:template>
 
 <xsl:template match="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']">
