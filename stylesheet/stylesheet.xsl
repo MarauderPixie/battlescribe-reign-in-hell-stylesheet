@@ -20,140 +20,143 @@
             /* @media print{@page {size: landscape}} */
 
             @media (orientation: landscape) {
-            body {
-                font-family: 'Lusitana', serif;
-                font-size: 0.8em; 
-                flex-direction: column;
-            }
+                body {
+                    font-family: 'Lusitana', serif;
+                    font-size: 0.8em; 
+                    flex-direction: column;
+                }
 
-            h1 {
-                font-family: Cinzel, Democratika, serif;
-                /* font-size: 54pt; */
-                font-weight: bold;
-                margin-bottom: 0;
-                display: inline-block;
-            }
-            h2 {
-                font-family: Cinzel, Democratika, serif;
-                /* font-size: 54pt; */
-                margin-top: 0;
-                font-weight: normal;
-                display: inline-block;
-            }
+                h1 {
+                    font-family: Cinzel, Democratika, serif;
+                    /* font-size: 54pt; */
+                    font-weight: bold;
+                    margin-bottom: 0;
+                    display: inline-block;
+                }
+                h2 {
+                    font-family: Cinzel, Democratika, serif;
+                    /* font-size: 54pt; */
+                    margin-top: 0;
+                    font-weight: normal;
+                    display: inline-block;
+                }
 
-            p {
-                padding: 5px 10px;
-                margin-block-start: 0em;
-                margin-block-end: 0em;
-            }
+                p {
+                    padding: 5px 10px;
+                    margin-block-start: 0em;
+                    margin-block-end: 0em;
+                }
 
-            .card {
-                float: left;
-                margin: 12px;
-                width: 12cm;
-                min-height: 4.5cm;
-                background-color: #ffffff;
-                /* border: 2px solid #555555;
-                border-radius: 0.4em; */
-                border: 10px solid transparent;
-                padding: 5px;
-                border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 10 stretch;
-                margin-bottom: 0;
-                font-size: 0.8em; 
-                page-break-inside: avoid;
-            }
-            .card .card-header {
-                color: #000000;
-                font-size: 1.1em;
-                font-variant-caps: small-caps;
-                /* background-color: #f4f4f4; */
-                border-top-left-radius: 0.4em;
-                border-top-right-radius: 0.4em;
-                text-align: left;
-                /* text-transform: uppercase; */
-                padding: 0.2cm; 
-            }
-
-
-            .card .wound-track {
-                height: 2.5cm;
-                width: 5cm;
-                float: right;
-                z-index: 1;
-                position: absolute;
-                margin-left: 10.2cm;
-                background-color: white;
-                border: 2px solid #555555;
-                border-bottom-left-radius: 0.4em;
-                border-bottom-right-radius: 0.4em; }
-            .card .wound-track span {
-                color: #FF0000;
-                font-weight: bold; }
-            .card .wound-track .wound-track-header {
-                padding: 2px 4px;
-                font-size: 0.6em; }
-            .card .wound-track table {
-                width: 100%;
-                font-size: 0.7em;
-                border-collapse: collapse;
-                text-align: center; }
+                .card {
+                    float: left;
+                    margin: 12px;
+                    width: 12cm;
+                    min-height: 4cm;
+                    background-color: #ffffff;
+                    /* border: 2px solid #555555;
+                    border-radius: 0.4em; */
+                    border: 6px solid transparent;
+                    padding: 5px;
+                    border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 10 stretch;
+                    margin-bottom: 0;
+                    font-size: 0.8em; 
+                    page-break-inside: avoid;
+                }
+                .card:nth-child(even) {
+                    clear: left;
+                }
+                .card .card-header {
+                    color: #000000;
+                    font-size: 1.2em;
+                    font-variant-caps: small-caps;
+                    /* background-color: #f4f4f4; */
+                    border-top-left-radius: 0.4em;
+                    border-top-right-radius: 0.4em;
+                    text-align: left;
+                    /* text-transform: uppercase; */
+                    padding: 0.2cm; 
+                }
 
 
-            /* .card .wound-track tr {
-                background-color: #FFFFFF; }
-            .card .wound-track tr:nth-child(odd) {
-                background-color: #AFB7A4; }
-            .card .wound-track tr::nth-child(even) {
-                background-color: #FFFFFF; }
-            .card .wound-track th {
-                background-color: #748A4E; } */
+                .card .wound-track {
+                    height: 2.5cm;
+                    width: 5cm;
+                    float: right;
+                    z-index: 1;
+                    position: absolute;
+                    margin-left: 10.2cm;
+                    background-color: white;
+                    border: 2px solid #555555;
+                    border-bottom-left-radius: 0.4em;
+                    border-bottom-right-radius: 0.4em; }
+                .card .wound-track span {
+                    color: #FF0000;
+                    font-weight: bold; }
+                .card .wound-track .wound-track-header {
+                    padding: 2px 4px;
+                    font-size: 0.6em; }
+                .card .wound-track table {
+                    width: 100%;
+                    font-size: 0.7em;
+                    border-collapse: collapse;
+                    text-align: center; }
 
 
-            table {
-                border-collapse: collapse;
-                margin: 1px 8px 8px 5px;
-                float: left;
-            }
+                /* .card .wound-track tr {
+                    background-color: #FFFFFF; }
+                .card .wound-track tr:nth-child(odd) {
+                    background-color: #AFB7A4; }
+                .card .wound-track tr::nth-child(even) {
+                    background-color: #FFFFFF; }
+                .card .wound-track th {
+                    background-color: #748A4E; } */
 
-            /* table .abilities {
-                float: left;
-            } */
-            tr {
-                font-size: 0.5em;
-                background-color: #fff; 
-            }
-            tr:nth-child(odd) {
-                font-size: 1.3em;
-                text-align: center;
-                border-bottom: 2px solid #aaa;   
-                /* border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 100 round; */
-            }
 
-            .hitbox {
-                height: 14px;
-                width: 14px;
-                background-color: #fff;
-                border: 1px solid #555555;
-                display: inline-block;
-                margin-right: 5px;
-            }
-            .hitbox:first-of-type {
-                margin-top: 12px;
-                margin-left: 8px;
-            }
-            .hitbox:nth-child(3n+2) {
-                background-color: #E3E2E2;
-            }
+                table {
+                    border-collapse: collapse;
+                    margin: 1px 8px 8px 5px;
+                    float: left;
+                }
 
-            .abilities {
-                color: black;
-            }
-            .essences {
-                color: black;
-            }
-            .relics {
-                color: black;
-            }
+                /* table .abilities {
+                    float: left;
+                } */
+                tr {
+                    font-size: 0.5em;
+                    background-color: #fff; 
+                }
+                tr:nth-child(odd) {
+                    font-size: 1.3em;
+                    text-align: center;
+                    border-bottom: 2px solid #aaa;   
+                    /* border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 100 round; */
+                }
+
+                .hitbox {
+                    height: 14px;
+                    width: 14px;
+                    background-color: #fff;
+                    border: 1px solid #555555;
+                    display: inline-block;
+                    margin-right: 5px;
+                }
+                .hitbox:first-of-type {
+                    margin-top: 12px;
+                    margin-left: 8px;
+                }
+                .hitbox:nth-child(3n+2) {
+                    background-color: #E3E2E2;
+                }
+
+                .abilities {
+                    color: black;
+                }
+                .essences {
+                    color: black;
+                }
+                .relics {
+                    color: black;
+                }
             }
             </style>
 		</head>
@@ -197,19 +200,7 @@
 
 <xsl:template match="bs:selections/bs:selection[@type='unit' or @type='upgrade' and @name!='Game Options']">
 		<div class="card">
-			<div class="card-header" style="align: left">
-                    <b><xsl:value-of select="./@name"/></b> - <xsl:value-of select="bs:categories/bs:category/@name"/>
-                    <span style="float: right">
-                    <xsl:choose>
-                        <xsl:when test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']">
-                            <b><xsl:value-of select="@customName"/> the <xsl:value-of select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']/@name"/> </b>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <b><xsl:value-of select="@customName"/></b>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                    </span>
-			</div>
+			
 			<div class="card-body">
 				<table class="unit" cellspacing="0">
                     <tr>
@@ -230,6 +221,20 @@
                     <tr><td>Combat</td></tr>
 				</table>
 
+                <div class="card-header" style="align: left">
+                    <b><xsl:value-of select="./@name"/></b> - <xsl:value-of select="bs:categories/bs:category/@name"/>
+                    <span style="float: right">
+                    <xsl:choose>
+                        <xsl:when test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']">
+                            <b><xsl:value-of select="@customName"/> the <xsl:value-of select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Title']/@name"/> </b>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <b><xsl:value-of select="@customName"/></b>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    </span>
+			    </div>
+
                 
                 <!-- LIFE TRACKER !-->
                 <b>Wounds:</b><xsl:call-template name="life-tracker" />
@@ -244,7 +249,8 @@
                 </xsl:if>
 
                 
-                <p class="abilities"> <!-- DECLARE ABILITIES !-->
+                <!-- DECLARE ABILITIES !-->
+                <p class="abilities"> 
                     <xsl:variable name="ability-name" select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']"/>
                     <!-- <b><i><xsl:value-of select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']/@name"/></i></b> - <xsl:value-of select="bs:profiles/bs:profile[@typeId='8366-9fc7-d1ad-f62b']/bs:characteristics/bs:characteristic"/> !-->
                     <xsl:for-each select="$ability-name">
@@ -254,13 +260,14 @@
 
 
                 <xsl:variable name="leader-gear" select="bs:selections/bs:selection/bs:profiles/bs:profile"/>
-                <xsl:if test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Essence' or @typeName='Leader Essence']">
-                    <p class="essences"> <!-- DECLARE ESSENCES !-->
-                        <xsl:if test="$leader-gear/@typeName='Leader Essence'">
-                            <b><i><xsl:value-of select="$leader-gear/@name"/> - </i></b><xsl:value-of select="$leader-gear/bs:characteristics/bs:characteristic"/><br />
+                <!-- DECLARE ESSENCES !-->
+                <xsl:if test="$leader-gear[@typeName='Essence' or @typeName='Leader Essence']">
+                    <p class="essences"> 
+                        <xsl:if test="$leader-gear[@typeName='Leader Essence']">
+                            <b><i><xsl:value-of select="$leader-gear[@typeName='Leader Essence']/@name"/> - </i></b><xsl:value-of select="$leader-gear[@typeName='Leader Essence']/bs:characteristics/bs:characteristic"/><br />
                         </xsl:if>
 
-                        <xsl:variable name="essences" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Essence']"/>
+                        <xsl:variable name="essences" select="$leader-gear[@typeName='Essence']"/>
                         <xsl:for-each select="$essences">
                             <b><i><xsl:value-of select="@name"/> - </i></b><xsl:value-of select="bs:characteristics/bs:characteristic"/><br />
                         </xsl:for-each>
@@ -268,16 +275,17 @@
                 </xsl:if>
 
                 
-                <xsl:if test="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Relic' or @typeName='Leader Relic']">
-                    <p class="relics"> <!-- DECLARE RELICS
-                            -> since every demon can only ever have one, the for-each might as well just go away 
-                                -> then again, there's a title that allows for more
-                            -> maybe create CSS classes (for abilities, essences and relics)? !-->
+                <!-- DECLARE RELICS
+                    -> since every demon can only ever have one, the for-each might as well just go away 
+                        -> then again, there's a title that allows for more
+                    -> maybe create CSS classes (for abilities, essences and relics)? !-->
+                <xsl:if test="$leader-gear[@typeName='Relic' or @typeName='Leader Relic']">
+                    <p class="relics"> 
                         <xsl:if test="$leader-gear/@typeName='Leader Relic'">
                             <b><i><xsl:value-of select="$leader-gear[@typeName='Leader Relic']/@name"/> - </i></b><xsl:value-of select="$leader-gear[@typeName='Leader Relic']/bs:characteristics/bs:characteristic"/><br />
                         </xsl:if>
                         
-                        <xsl:variable name="relics" select="bs:selections/bs:selection/bs:profiles/bs:profile[@typeName='Relic']"/>
+                        <xsl:variable name="relics" select="$leader-gear[@typeName='Relic']"/>
                         <xsl:for-each select="$relics">
                             <b><i><xsl:value-of select="@name"/> - </i></b> <xsl:value-of select="bs:characteristics/bs:characteristic"/>
                         </xsl:for-each>
