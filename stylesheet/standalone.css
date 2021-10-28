@@ -1,114 +1,164 @@
-@import url("https://fonts.googleapis.com/css2?family=Cambo&amp;display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500&amp;display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lusitana&amp;display=swap');
 
-body {
-    font-family: 'Cambo', sans-serif;
-    font-size: 0.8em;
+@font-face {
+    font-family: "Democratika";
+    src: url("/home/tobi/.fonts/democratika.ttf");
 }
 
-p {
-    margin: 10px;
-}
+/* @media print{@page {size: landscape}} */
 
-.card {
-    width: 12cm;
-    min-height: 4.0cm;
-    background-color: #ffffff;
-    border: 2px solid #555555;
-    border-radius: 0.4em;
-    margin-bottom: 0.5cm;
-    font-size: 0.9em;
-}
+@media (orientation: landscape) {
+    body {
+        font-family: 'Lusitana', serif;
+        font-size: 0.8em;
+        flex-direction: column;
+    }
 
-.card .card-header {
-    color: #000000;
-    font-size: 1em;
-    font-variant-caps: small-caps;
-    background-color: #f4f4f4;
-    border-top-left-radius: 0.4em;
-    border-top-right-radius: 0.4em;
-    text-align: left;
-    /* text-transform: uppercase; */
-    padding: 0.2cm;
-}
+    h1 {
+        font-family: Cinzel, Democratika, serif;
+        /* font-size: 54pt; */
+        font-weight: bold;
+        margin-bottom: 0;
+        display: inline-block;
+    }
 
-.card .wound-track {
-    height: 2.5cm;
-    width: 5cm;
-    float: right;
-    z-index: 1;
-    position: absolute;
-    margin-left: 10.2cm;
-    background-color: white;
-    border: 2px solid #555555;
-    border-bottom-left-radius: 0.4em;
-    border-bottom-right-radius: 0.4em;
-}
+    h2 {
+        font-family: Cinzel, Democratika, serif;
+        /* font-size: 54pt; */
+        margin-top: 0;
+        font-weight: normal;
+        display: inline-block;
+    }
 
-.card .wound-track span {
-    color: #FF0000;
-    font-weight: bold;
-}
+    p {
+        padding: 5px 10px;
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+    }
 
-.card .wound-track .wound-track-header {
-    padding: 2px 4px;
-    font-size: 0.6em;
-}
+    .card {
+        float: left;
+        margin: 12px;
+        width: 12cm;
+        min-height: 4cm;
+        background-color: #ffffff;
+        /* border: 2px solid #555555;
+                    border-radius: 0.4em; */
+        border: 6px solid transparent;
+        padding: 5px;
+        border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 10 stretch;
+        margin-bottom: 0;
+        font-size: 0.8em;
+        page-break-inside: avoid;
+    }
 
-.card .wound-track table {
-    width: 100%;
-    font-size: 0.7em;
-    border-collapse: collapse;
-    text-align: center;
-}
+    .card:nth-child(even) {
+        clear: left;
+    }
 
-/* .card .wound-track tr {
-                background-color: #FFFFFF; }
-            .card .wound-track tr:nth-child(odd) {
-                background-color: #AFB7A4; }
-            .card .wound-track tr::nth-child(even) {
-                background-color: #FFFFFF; }
-            .card .wound-track th {
-                background-color: #748A4E; } */
-table {
-    border-collapse: collapse;
-    margin: 5px;
-    float: left;
-}
+    .card .card-header {
+        color: #000000;
+        font-size: 1.2em;
+        font-variant-caps: small-caps;
+        /* background-color: #f4f4f4; */
+        border-top-left-radius: 0.4em;
+        border-top-right-radius: 0.4em;
+        text-align: left;
+        /* text-transform: uppercase; */
+        padding: 0.2cm;
+    }
 
-tr {
-    font-size: 0.5em;
-    background-color: #fff;
-}
 
-tr:nth-child(odd) {
-    font-size: 2em;
-    text-align: center;
-    border-bottom: 2px solid #aaa;
-    /* border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 100 round; */
-}
+    .card .wound-track {
+        height: 2.5cm;
+        width: 5cm;
+        float: right;
+        z-index: 1;
+        position: absolute;
+        margin-left: 10.2cm;
+        background-color: white;
+        border: 2px solid #555555;
+        border-bottom-left-radius: 0.4em;
+        border-bottom-right-radius: 0.4em;
+    }
 
-.hitbox {
-    height: 14px;
-    width: 14px;
-    background-color: #fff;
-    border: 1px solid #555555;
-    display: inline-block;
-    margin-right: 5px;
-}
+    .card .wound-track span {
+        color: #FF0000;
+        font-weight: bold;
+    }
 
-.hitbox:first-of-type {
-    margin-top: 12px;
-    margin-left: 24px;
-}
+    .card .wound-track .wound-track-header {
+        padding: 2px 4px;
+        font-size: 0.6em;
+    }
 
-.abilities {
-    color: red;
-}
+    .card .wound-track table {
+        width: 100%;
+        font-size: 0.7em;
+        border-collapse: collapse;
+        text-align: center;
+    }
 
-.essences {
-    color: green;
-}
 
-.relics {
-    color: blue;
+    /* .card .wound-track tr {
+                    background-color: #FFFFFF; }
+                .card .wound-track tr:nth-child(odd) {
+                    background-color: #AFB7A4; }
+                .card .wound-track tr::nth-child(even) {
+                    background-color: #FFFFFF; }
+                .card .wound-track th {
+                    background-color: #748A4E; } */
+
+
+    table {
+        border-collapse: collapse;
+        margin: 1px 8px 8px 5px;
+        float: left;
+    }
+
+    /* table .abilities {
+                    float: left;
+                } */
+    tr {
+        font-size: 0.5em;
+        background-color: #fff;
+    }
+
+    tr:nth-child(odd) {
+        font-size: 1.3em;
+        text-align: center;
+        border-bottom: 2px solid #aaa;
+        /* border-image: url(https://www.worldanvil.com/uploads/images/570410efbb0c11476af474932082da6c.png) 100 round; */
+    }
+
+    .hitbox {
+        height: 14px;
+        width: 14px;
+        background-color: #fff;
+        border: 1px solid #555555;
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    .hitbox:first-of-type {
+        margin-top: 12px;
+        margin-left: 8px;
+    }
+
+    .hitbox:nth-child(3n+2) {
+        background-color: #E3E2E2;
+    }
+
+    .abilities {
+        color: black;
+    }
+
+    .essences {
+        color: black;
+    }
+
+    .relics {
+        color: black;
+    }
 }
